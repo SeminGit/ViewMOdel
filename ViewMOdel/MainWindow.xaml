@@ -15,7 +15,15 @@
         <DataTemplate DataType="{x:Type ViewModel:BackVM}">
             <View:Back/>
         </DataTemplate>
-        
+        <DataTemplate DataType="{x:Type ViewModel:BookVM}">
+            <View:BookForm/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModel:ChoosingRoomVM}">
+            <View:ChoosingRoom/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModel:FinalRegistrationStepVM}">
+            <View:FinalRegistrationStep/>
+        </DataTemplate>
     </Window.Resources>
     <ContentControl Content="{Binding CurrentVM}"/> <!--Само окошко-->
     

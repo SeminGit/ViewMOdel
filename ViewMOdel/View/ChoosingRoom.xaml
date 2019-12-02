@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="ViewMOdel.View.ChoosingRoom"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ViewMOdel.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="0.8*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0"  Grid.Row="0" Name="FilterPanel" Background="White">
+            <TextBlock Text="Room type" VerticalAlignment="Top"/>
+            <StackPanel Margin="0,10,0,10" Name="RoomTypePanel">
+                <RadioButton x:Name="EconomyButton" GroupName="Room type" Content="Economy" Command="{Binding EconomyTypeButtonCommand}" />
+                <RadioButton x:Name="LuxButton" GroupName="Room type" Content="Lux"/>
+            </StackPanel>
+            <TextBlock Text="Number of places"></TextBlock>
+            <StackPanel Margin="0,10,0,10">
+                <RadioButton GroupName="NumberOfPlaces" Content="1" />
+                <RadioButton GroupName="NumberOfPlaces" Content="2" />
+                <RadioButton GroupName="NumberOfPlaces" Content="3" />
+            </StackPanel>
+            <TextBlock Text="Number of rooms"/>
+            <StackPanel Margin="0,10,0,10">
+                <RadioButton GroupName="NumberOfRooms" Content="1" />
+                <RadioButton GroupName="NumberOfRooms" Content="2" />
+                <TextBlock DataContext="{Binding Root.SelectedRoom}" Text="{Binding Owner.FName}"/>
+            </StackPanel>
+        </StackPanel>
+        <ListBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding ListOfRooms}" SelectedItem="{Binding SelectedRoom}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel Margin="5">
+                        <TextBlock Text="Номер:" Margin="5"/>
+                        <TextBlock Background="Beige" FontSize="18" Text="{Binding Path=Name}" Margin="5"/>
+                        <TextBlock Text="Тип" Margin="5"/>
+                        <TextBlock Text="{Binding Path=RoomType}" Margin="5"/>
+                        <TextBlock Text="Количество комнат: " Margin="5"/>
+                        <TextBlock Text="{Binding Path=NumberOfRooms}" Margin="5"/>
+                        <TextBlock Text="Количество спальных мест: " Margin="5"/>
+                        <TextBlock Text="{Binding Path=NumberOfVisitors}" Margin="5"/>
+                        <TextBlock Text="Цена: " Margin="5"/>
+                        <TextBlock Text="{Binding Path=Price}" Margin="5"/>
+                    </WrapPanel>
+                    
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Book" Grid.Row="1" Command="{Binding GoTo}" CommandParameter="BookViewModel"></Button>
+    </Grid>
+</UserControl>
